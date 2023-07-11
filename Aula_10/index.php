@@ -14,10 +14,10 @@
         // $cheque = new Cheque(207.25, "Comum");
         // echo $cheque->verValor();
 
-        $chequeComum = new ChequeComum(307.37, "Comum");
+        $chequeComum = new ChequeComum(2307.37, "Comum");
         echo $chequeComum->calcularJuro();
 
-        $chequeEspecial = new ChequeEspecial(408.99, "Especial");
+        $chequeEspecial = new ChequeEspecial(4008.99, "Especial");
         echo $chequeEspecial->calcularJuro();
     ?>
 </body>
