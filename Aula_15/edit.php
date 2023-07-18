@@ -39,7 +39,14 @@ $id = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
         if (!empty($formData['SendEditUser'])){
             $editUser =  new User();
             $editUser->formData = $formData;
-            $editUser->edit();
+            $value = $editUser->edit();
+
+            if ($value){
+                $_SESSION['msg'] = "<p style='color:green;'>Usuário editado com sucesso!</p>";
+                header("Location: index.php");
+            }else {
+                echo "<p style='color:#f00;'>Erro: Usuário não editado!</p>";
+            }
         }
 
         // Verificar se o ID possui valor

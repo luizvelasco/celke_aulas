@@ -44,12 +44,21 @@ class User extends Conn
         return $value;
     }
 
-    public function edit()
+    public function edit(): bool
     {
         $this->conn = $this->connectDb();
-        $query = "SELECT id, nome, email, created, modified FROM usuarios WHERE id = :id LIMIT 1";
-        $result_user = $this->conn->prepare($query);
-        $result_user->bindParam(":id", $this->id);
-        $result_user->execute(); 
+        $query = "UPDATE usuarios SET nome = :nome, email = :email, modified = NOW() WHERE id = :id";
+        $edit_user = $this->conn->prepare($query);
+        $edit_user->bindParam(":nome", $this->formData['nome']);
+        $edit_user->bindParam(":email", $this->formData['email']);
+        $edit_user->bindParam(":id", $this->formData['id']);
+        $edit_user->execute(); 
+
+        if ($edit_user->rowCount()) {
+            return true;
+        } else {
+            return false;
+        }
+
     }
 }
