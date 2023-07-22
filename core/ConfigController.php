@@ -19,7 +19,7 @@ class ConfigController
                 $this->urlController = $this->urlArray[0];
                 $this->urlMetodo = $this->urlArray[1];
             } else {
-                $this->urlController = "home";
+                $this->urlController = "erro";
                 $this->urlMetodo = "index";
             }
         } else {
@@ -28,5 +28,14 @@ class ConfigController
             
         }
         echo "Controller: {$this->urlController} - Método: {$this->urlMetodo} <br>";
+    }
+
+    public function loadPage()
+    {
+        echo "Carregar a página/controller<br>";
+        $classLoad = "\\Sts\Controllers\\" . $this->urlController;
+        $classPage = new $classLoad;
+
+        $classPage->index();
     }
 }
